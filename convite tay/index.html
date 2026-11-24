@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>40 Anos - Tay</title>
+  <link rel="preconnect" href="https://googleapis.com">
+  <link rel="preconnect" href="https://gstatic.com" crossorigin>
+  <link href="https://googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="app-wrapper">
+    
+    <!-- TELA 1: ENVELOPE COM SELO -->
+    <div class="envelope-overlay" id="envelope">
+      <div class="signature-top">Tay</div>
+      <div class="flap flap-left"></div>
+      <div class="flap flap-right"></div>
+
+      <div class="wax-seal-container" onclick="abrirConvite()" title="Clique no selo para abrir">
+        <svg class="curved-svg" viewBox="0 0 200 200">
+          <defs>
+            <path id="sealTextPath" d="M 100, 100 m -74, 0 a 74,74 0 1,1 148,0 a 74,74 0 1,1 -148,0" />
+          </defs>
+          <text fill="#fff5df" font-size="14" font-family="Montserrat, sans-serif" letter-spacing="1.8">
+            <textPath href="#sealTextPath" startOffset="53%">
+              Clique no selo para abrir
+            </textPath>
+          </text>
+        </svg>
+        <div class="wax-seal">🌹</div>
+      </div>
+    </div>
+
+    <!-- TELA 2: CONVITE PRINCIPAL -->
+    <main class="invite-card">
+      <div class="gold-frame"></div>
+
+      <div class="floral floral-tl">🌺🌿</div>
+      <div class="floral floral-tr">🌸🌿</div>
+      <div class="floral floral-bl">🌺🍃</div>
+      <div class="floral floral-br">🌸🌺</div>
+
+      <header class="header-section">
+        <div class="age-title">40 ANOS</div>
+        <h1 class="script-name">Tay</h1>
+        <div class="divider">❦</div>
+        <p class="invite-phrase">Venha celebrar esse dia tão especial comigo!</p>
+      </header>
+
+      <section class="date-block" aria-label="Data e Horário do Evento">
+        <div class="month-label">Dezembro</div>
+        <div class="date-row">
+          <div class="side-box">DOMINGO</div>
+          <div class="day-number">06</div>
+          <div class="side-box">12:30H</div>
+        </div>
+        <div class="year-label">2026</div>
+      </section>
+
+      <div class="interact-hint">
+        <span class="hand-icon">👆</span>
+        <span>Clique nos botões abaixo para interagir</span>
+      </div>
+
+      <section class="actions-area">
+        <button class="action-btn right" onclick="abrirModal('modalRsvp')">
+          <div class="btn-circle">👤✓</div>
+          <span class="btn-text">Confirme sua<br>presença até 30/11</span>
+        </button>
+
+        <button class="action-btn" onclick="abrirModal('modalLocal')">
+          <div class="btn-circle">📍</div>
+          <span class="btn-text">Local da<br>festa</span>
+        </button>
+
+        <button class="action-btn center" onclick="abrirModal('modalPresentes')">
+          <div class="btn-circle">🎁</div>
+          <span class="btn-text">Sugestão de<br>presentes</span>
+        </button>
+      </section>
+
+      <footer class="obs-footer">
+        <strong>Obs:</strong>
+        Piscina liberada. 🏊‍♀️
+      </footer>
+    </main>
+
+    <!-- MODAL: CONFIRMAR PRESENÇA -->
+    <div class="modal-backdrop" id="modalRsvp" onclick="fecharSeFora(event, 'modalRsvp')">
+      <div class="modal-box light-modal">
+        <button class="close-modal" onclick="fecharModal('modalRsvp')">✕</button>
+        <h3>Confirmar Presença</h3>
+        <p>Por favor, confirme até <strong>30/11/2026</strong> para organizarmos tudo com carinho!</p>
+        <input type="text" id="nomeConvidado" class="input-field" placeholder="Seu nome completo" />
+        <input type="number" id="qtdAcompanhantes" class="input-field" placeholder="Quantidade de pessoas (ex: 1)" min="1" />
+        <button class="primary-cta" onclick="enviarWhatsApp()">Confirmar via WhatsApp 💬</button>
+      </div>
+    </div>
+
+    <!-- MODAL: LOCAL DA FESTA -->
+    <div class="modal-backdrop" id="modalLocal" onclick="fecharSeFora(event, 'modalLocal')">
+      <div class="modal-box light-modal">
+        <button class="close-modal" onclick="fecharModal('modalLocal')">✕</button>
+        <h3>Local da Festa 📍</h3>
+        <p><strong>Domingo, 06 de Dezembro de 2026</strong><br>A partir das 12:30h</p>
+        <p id="enderecoTexto">Queiroz Recepções</p>
+        <a href="https://maps.app.goo.gl/sDfJvithqJTMsi8N6" target="_blank" rel="noopener" class="primary-cta">Abrir no Google Maps 🗺️</a>
+      </div>
+    </div>
+
+    <!-- MODAL (TELA 3): SUGESTÃO DE PRESENTES -->
+    <div class="modal-backdrop" id="modalPresentes" onclick="fecharSeFora(event, 'modalPresentes')">
+      <div class="modal-box gifts-modal">
+        <button class="close-modal" onclick="fecharModal('modalPresentes')">✕</button>
+
+        <div class="gift-logo">
+          <div class="big-40">40</div>
+          <div class="overlay-name">da Tay</div>
+        </div>
+
+        <h2 class="gift-heading">Sugestão de Presente</h2>
+
+        <div class="gift-pill">
+          <span>Blusa: <strong>P</strong></span>
+          <span class="icon">👚</span>
+        </div>
+
+        <div class="gift-pill">
+          <span class="icon">🩳</span>
+          <span>Short / Calça: <strong>36</strong></span>
+        </div>
+
+        <div class="gift-pill">
+          <span>Calçado: <strong>35</strong></span>
+          <span class="icon">👠</span>
+        </div>
+
+        <div class="gift-pill">
+          <span class="icon">💍</span>
+          <span>Acessórios: <strong>Dourado</strong></span>
+          <span class="icon">🧴</span>
+        </div>
+
+        <div class="espero-voce">ESPERO VOCÊ!</div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
